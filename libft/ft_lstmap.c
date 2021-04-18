@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 14:06:18 by kanlee            #+#    #+#             */
-/*   Updated: 2021/03/13 03:22:49 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/16 19:13:00 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 
 	if (!lst || !f)
 		return (NULL);
-	new_first = ft_lstnew((*f)(lst->content), 0);
+	new_first = ft_lstnew((*f)(lst->content));
 	if (!new_first)
 		return (NULL);
 	prev = new_first;
 	tmp = lst->next;
 	while (tmp)
 	{
-		prev->next = ft_lstnew((*f)(tmp->content), 0);
+		prev->next = ft_lstnew((*f)(tmp->content));
 		if (!(prev->next))
 		{
 			ft_lstclear(&new_first, del);
