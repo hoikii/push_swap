@@ -9,12 +9,11 @@ SRC		= ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 		  ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c \
 		  ft_strmapi.c \
 		  ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
-		  ft_cntwords_bonus.c ft_strequ_bonus.c
-HEADER	= libft.h
-SRC_B	= ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
+		  ft_cntwords_bonus.c ft_strequ_bonus.c \
+		  ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
 		  ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
+HEADER	= libft.h
 OBJS	= $(SRC:.c=.o)
-OBJS_B	= $(SRC_B:.c=.o)
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
 RM		= rm -rf
@@ -26,14 +25,13 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	ar -rcs $(NAME) $(OBJS)
 
-bonus: $(OBJS) $(OBJS_B)
-	ar -rcs $(NAME) $(OBJS) $(OBJS_B)
+bonus: all
 
 %.o: %.c $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS) $(OBJS_B)
+	$(RM) $(OBJS)
 
 fclean: clean
 	$(RM) $(NAME)
