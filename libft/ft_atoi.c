@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:54:52 by kanlee            #+#    #+#             */
-/*   Updated: 2021/03/13 03:17:38 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/19 18:16:12 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	is_space(char ch)
 		|| ch == '\v' || ch == '\r' || ch == '\f');
 }
 
-int			ft_atoi(const char *nptr)
+int			ft_atoi(const char *nptr, int *n)
 {
 	int			sign;
 	long long	result;
@@ -38,7 +38,8 @@ int			ft_atoi(const char *nptr)
 		if (sign * result > INT_MAX)
 			return (-1);
 		else if (sign * result < INT_MIN)
-			return (0);
+			return (-1);
 	}
-	return (sign * result);
+	*n = sign * result;
+	return (1);
 }

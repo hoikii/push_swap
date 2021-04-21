@@ -6,6 +6,10 @@ PUSHSWAP_NAME	= push_swap
 PUSHSWAP_SRCS	= srcs/push_swap/main.c
 PUSHSWAP_OBJS	= $(PUSHSWAP_SRCS:.c=.o)
 
+SHARED_SRCS		= srcs/stack.c \
+				  srcs/operations.c
+SHARED_OBJS		= $(SHARED_SRCS:.c=.o)
+
 LIBFTDIR	= libft
 LIBFTNAME	= ft
 CC			= gcc
@@ -26,14 +30,14 @@ CCEND		= \033[0m
 
 all: $(CHECKER_NAME) $(PUSHSWAP_NAME)
 
-$(CHECKER_NAME): $(CHECKER_OBJS)
+$(CHECKER_NAME): $(CHECKER_OBJS) $(SHARED_OBJS)
 	@$(MAKE) bonus -C libft
-	$(CC) $(CHECKER_OBJS) $(CFLAGS) $(LDFLAGS) -o $(CHECKER_NAME)
+	$(CC) $(CHECKER_OBJS) $(SHARED_OBJS) $(CFLAGS) $(LDFLAGS) -o $(CHECKER_NAME)
 	@echo "$(CCBLUE_BOLD) >>> make $(CHECKER_NAME) done!  <<< $(CCEND)"
 
-$(PUSHSWAP_NAME): $(PUSHSWAP_OBJS)
+$(PUSHSWAP_NAME): $(PUSHSWAP_OBJS) $(SHARED_OBJS)
 	@$(MAKE) bonus -C libft
-	$(CC) $(PUSHSWAP_OBJS) $(CFLAGS) $(LDFLAGS) -o $(PUSHSWAP_NAME)
+	$(CC) $(PUSHSWAP_OBJS) $(SHARED_OBJS) $(CFLAGS) $(LDFLAGS) -o $(PUSHSWAP_NAME)
 	@echo "$(CCBLUE_BOLD) >>> make $(PUSHSWAP_NAME) done!  <<< $(CCEND)"
 
 %.o: %.c
@@ -43,8 +47,7 @@ bonus: CFLAGS += -DBONUS -D THREADS_CNT=$(shell getconf _NPROCESSORS_ONLN)
 bonus: clean all
 
 test: CFLAGS += -g3 -fsanitize=address
-test: bonus
-	./$(NAME) scenes/objects.rt
+test: all
 
 cleanlib:
 	@echo "$(CCBLUE) >>> clean libft <<< $(CCEND)"

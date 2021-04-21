@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/02 13:09:12 by kanlee            #+#    #+#             */
-/*   Updated: 2021/03/03 00:16:37 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/19 18:04:16 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char				*ft_strrchr(const char *s, int c);
 char				*ft_strnstr(const char *big, const char *little,
 		size_t len);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
-int					ft_atoi(const char *nptr);
+int					ft_atoi(const char *nptr, int *n);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);
