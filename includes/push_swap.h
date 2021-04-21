@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 22:57:21 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/22 00:12:11 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/22 01:25:55 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct		 s_item {
 
 typedef struct	s_stack {
 	t_item		*head;
+	int			size;
 	int			min;
 	int			max;
 }				t_stack;
