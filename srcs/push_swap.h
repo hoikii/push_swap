@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 22:57:21 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/20 18:19:19 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/21 17:54:35 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ typedef struct	s_stack {
 	int			max;
 }				t_stack;
 
+
+void	free_split(char **str);
+void	free_stacks(t_stack *a, t_stack *b);
+int		fill_stack_a(t_stack *a, char **av);
 
 void	stack_add_top(t_stack *stack, int n);
 void	stack_del_top(t_stack *stack);

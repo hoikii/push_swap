@@ -7,6 +7,8 @@ PUSHSWAP_SRCS	= srcs/push_swap/main.c
 PUSHSWAP_OBJS	= $(PUSHSWAP_SRCS:.c=.o)
 
 SHARED_SRCS		= srcs/stack.c \
+				  srcs/cleanup.c \
+				  srcs/fill_stack_a.c \
 				  srcs/operations.c
 SHARED_OBJS		= $(SHARED_SRCS:.c=.o)
 
