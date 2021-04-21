@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:54:52 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/19 18:16:12 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/22 01:04:00 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int			ft_atoi(const char *nptr, int *n)
 		else if (sign * result < INT_MIN)
 			return (-1);
 	}
+	if (*nptr != '\0')
+		return (-1);
 	*n = sign * result;
 	return (1);
 }
