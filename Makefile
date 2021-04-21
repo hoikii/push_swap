@@ -6,12 +6,15 @@ PUSHSWAP_NAME	= push_swap
 PUSHSWAP_SRCS	= srcs/push_swap/main.c
 PUSHSWAP_OBJS	= $(PUSHSWAP_SRCS:.c=.o)
 
-SHARED_SRCS		= srcs/stack.c \
+SHARED_SRCS		= srcs/gnl/get_next_line.c \
+				  srcs/gnl/get_next_line_utils.c \
+				  srcs/stack.c \
 				  srcs/cleanup.c \
 				  srcs/fill_stack_a.c \
 				  srcs/operations.c
 SHARED_OBJS		= $(SHARED_SRCS:.c=.o)
 
+HEADERS		= includes
 LIBFTDIR	= libft
 LIBFTNAME	= ft
 CC			= gcc
@@ -43,7 +46,7 @@ $(PUSHSWAP_NAME): $(PUSHSWAP_OBJS) $(SHARED_OBJS)
 	@echo "$(CCBLUE_BOLD) >>> make $(PUSHSWAP_NAME) done!  <<< $(CCEND)"
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) -I $(HEADERS) $(CFLAGS) -c $< -o $@
 
 bonus: CFLAGS += -DBONUS -D THREADS_CNT=$(shell getconf _NPROCESSORS_ONLN)
 bonus: clean all
@@ -57,7 +60,7 @@ cleanlib:
 
 clean:
 	@echo "$(CCBLUE) >>> clean main projects object files. <<< $(CCEND)"
-	$(RM) $(CHECKER_OBJS) $(PUSHSWAP_OBJS)
+	$(RM) $(CHECKER_OBJS) $(PUSHSWAP_OBJS) $(SHARED_OBJS)
 
 fclean: clean cleanlib
 	@echo "$(CCBLUE) >>> clean main project's executable. <<< $(CCEND)"

@@ -6,13 +6,12 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 23:28:02 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/21 22:01:32 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/21 22:20:19 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "push_swap.h"
-#include <stdio.h>
 
 void	stack_add_top(t_stack *stack, int n)
 {

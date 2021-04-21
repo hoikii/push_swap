@@ -6,12 +6,12 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 17:51:54 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/21 20:34:49 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/21 22:20:07 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "../libft/libft.h"
+#include "libft.h"
 
 static int	chk_dups(t_stack *a, int n)
 {
