@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 23:28:02 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/20 17:43:37 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/21 22:01:32 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,21 @@ void	stack_add_end(t_stack *stack, int n)
 
 void	stack_del_top(t_stack *stack)
 {
-	if (stack->head != NULL)
+	t_item	*tmp;
+
+	if (stack->head == NULL)
+		return ;
+	if (stack->head->next == stack->head)
 	{
-		stack->head->prev->next = stack->head->next;
-		stack->head = stack->head->next;
 		free(stack->head);
+		stack->head = NULL;
+	}
+	else
+	{
+		tmp = stack->head;
+		stack->head->prev->next = stack->head->next;
+		stack->head->next->prev = stack->head->prev;
+		stack->head = stack->head->next;
+		free(tmp);
 	}
 }
-
-
