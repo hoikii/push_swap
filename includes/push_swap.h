@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 22:57:21 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/23 11:38:44 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/23 13:24:04 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 
 # define FAIL 0
 # define SUCCESS 1
+
+# define INT_MAX 2147483647
+# define INT_MIN -2147483648
 
 typedef struct		 s_item {
 	struct s_item	*prev;
