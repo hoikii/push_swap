@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 05:52:08 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/24 06:33:47 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/24 07:04:06 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int		is_sorted(t_stack a, t_stack b)
 	if (b.head != NULL)
 		return (0);
 	tmp = a.head;
-	n = tmp->num;
 	while (tmp->next != a.head)
 	{
+		n = tmp->num;
 		if (n > tmp->next->num)
 			return (0);
 		tmp = tmp->next;
