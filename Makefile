@@ -24,7 +24,7 @@ CC			= gcc
 CFLAGS		= -Wall -Wextra
 # #############################
 # ##############################
-LDFLAGS		= -L$(LIBFTDIR) -l$(LIBFTNAME)
+LDFLAGS		= -L$(LIBFTDIR) -l$(LIBFTNAME) -lm
 RM			= rm -rf
 
 CCBLUE		= \033[34m
