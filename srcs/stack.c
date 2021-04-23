@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 23:28:02 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/21 22:20:19 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/24 06:33:59 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	stack_add_end(t_stack *stack, int n)
 	}
 	return ;
 }
-
 
 void	stack_del_top(t_stack *stack)
 {

@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 22:57:21 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/24 05:53:15 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/24 06:43:56 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,21 @@
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
 
-typedef struct		 s_item {
+typedef struct		s_item {
 	struct s_item	*prev;
 	struct s_item	*next;
 	int				num;
 }					t_item;
 
-typedef struct	s_stack {
-	t_item		*head;
-	int			size;
-	int			min;
-	int			max;
-}				t_stack;
+typedef struct		s_stack {
+	t_item			*head;
+	int				size;
+	int				min;
+	int				max;
+}					t_stack;
 
-void	free_split(char **str);
 void	free_stacks(t_stack *a, t_stack *b);
-int 	error(t_stack *a, t_stack *b);
+int		error(t_stack *a, t_stack *b);
 
 void	prn_stack(t_stack st);
 int		is_sorted(t_stack a, t_stack b);
@@ -48,7 +47,6 @@ int		fill_stack_a(t_stack *a, char **av);
 void	stack_add_top(t_stack *stack, int n);
 void	stack_del_top(t_stack *stack);
 void	stack_add_end(t_stack *stack, int n);
-
 
 typedef enum	e_ops {
 	ERR = -1,

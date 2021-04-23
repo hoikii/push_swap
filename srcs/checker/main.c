@@ -6,17 +6,16 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 23:43:20 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/24 06:04:27 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/24 06:22:26 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include "libft.h"
 #include "push_swap.h"
 #include "get_next_line.h"
 
-static int chk_op(char *line)
+static int	chk_op(char *line)
 {
 	if (ft_strequ(line, "sa") == 1)
 		return (DO_SA);
@@ -43,12 +42,27 @@ static int chk_op(char *line)
 	return (ERR);
 }
 
-int main(int ac, char **av)
+static int	read_line(t_stack *a, t_stack *b)
+{
+	char	*line;
+	int		opnum;
+
+	while (get_next_line(STDIN, &line) > 0)
+	{
+		opnum = chk_op(line);
+		free(line);
+		if (opnum == ERR)
+			return (FAIL);
+		do_op(a, b, opnum, 0);
+	}
+	free(line);
+	return (SUCCESS);
+}
+
+int			main(int ac, char **av)
 {
 	t_stack	a;
 	t_stack	b;
-	char	*line;
-	int	opnum;
 
 	ft_memset(&a, 0, sizeof(t_stack));
 	ft_memset(&b, 0, sizeof(t_stack));
@@ -56,15 +70,8 @@ int main(int ac, char **av)
 		return (error(&a, &b));
 	if (fill_stack_a(&a, av) == FAIL)
 		return (error(&a, &b));
-	while (get_next_line(STDIN, &line) > 0)
-	{
-		opnum = chk_op(line);
-		free(line);
-		if (opnum == ERR)
-			return (error(&a, &b));
-		do_op(&a, &b, opnum, 0);
-	}
-	free(line);
+	if (read_line(&a, &b) == FAIL)
+		return (error(&a, &b));
 	if (is_sorted(a, b))
 		ft_putstr_fd("OK\n", STDOUT);
 	else

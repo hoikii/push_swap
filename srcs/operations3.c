@@ -1,49 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   operations3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/24 05:52:08 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/24 06:33:47 by kanlee           ###   ########.fr       */
+/*   Created: 2021/04/20 17:48:24 by kanlee            #+#    #+#             */
+/*   Updated: 2021/04/24 06:37:03 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft.h"
 
-void	prn_stack(t_stack st)
+void	op_rra(t_stack *a, int print)
 {
-	t_item *start;
-	t_item *it;
-
-	start = st.head;
-	it = start;
-	while (it != NULL)
-	{
-		ft_putnbr_fd(it->num, STDOUT);
-		ft_putchar_fd('\n', STDOUT);
-		it = it->next;
-		if (it == start)
-			break ;
-	}
+	if (a->head != NULL)
+		a->head = a->head->prev;
+	if (print)
+		ft_putstr_fd("rra\n", STDOUT);
 }
 
-int		is_sorted(t_stack a, t_stack b)
+void	op_rrb(t_stack *b, int print)
 {
-	int		n;
-	t_item	*tmp;
+	if (b->head != NULL)
+		b->head = b->head->prev;
+	if (print)
+		ft_putstr_fd("rrb\n", STDOUT);
+}
 
-	if (b.head != NULL)
-		return (0);
-	tmp = a.head;
-	n = tmp->num;
-	while (tmp->next != a.head)
-	{
-		if (n > tmp->next->num)
-			return (0);
-		tmp = tmp->next;
-	}
-	return (1);
+void	op_rrr(t_stack *a, t_stack *b, int print)
+{
+	op_rra(a, 0);
+	op_rrb(b, 0);
+	if (print)
+		ft_putstr_fd("rrr\n", STDOUT);
 }

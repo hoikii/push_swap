@@ -12,6 +12,8 @@ SHARED_SRCS		= srcs/stack.c \
 				  srcs/cleanup.c \
 				  srcs/fill_stack_a.c \
 				  srcs/operations.c \
+				  srcs/operations2.c \
+				  srcs/operations3.c \
 				  srcs/utils.c
 SHARED_OBJS		= $(SHARED_SRCS:.c=.o)
 

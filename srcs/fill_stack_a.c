@@ -6,12 +6,24 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 17:51:54 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/21 22:20:07 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/24 06:27:58 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "push_swap.h"
 #include "libft.h"
+
+static void	free_split(char **str)
+{
+	int i;
+
+	i = -1;
+	while (str[++i] != NULL)
+		free(str[i]);
+	free(str);
+	return ;
+}
 
 static int	chk_dups(t_stack *a, int n)
 {
