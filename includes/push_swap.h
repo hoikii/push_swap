@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 22:57:21 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/24 07:25:59 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/24 08:35:41 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ void	do_op(t_stack *a, t_stack *b, int opnum, int print);
 
 void	solve_small(t_stack *a, t_stack *b);
 void	solve_big(t_stack *a, t_stack *b);
+void	find_minmax(t_stack *a);
 
 #endif

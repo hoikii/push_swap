@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 07:16:57 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/24 07:26:34 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/24 08:36:20 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,25 +66,6 @@ void	prepare(t_stack *a, t_stack *chunk_boundary)
 //		printf("%d\n", arr[i]);
 	free(arr);
 
-}
-void	find_minmax(t_stack *a)
-{
-	t_item *tmp;
-
-	a->min = INT_MAX;
-	a->max = INT_MIN;
-	tmp = a->head;
-	while (1)
-	{
-		if (a->min > tmp->num)
-			a->min = tmp->num;
-		if (a->max < tmp->num)
-			a->max = tmp->num;
-		tmp = tmp->next;
-		if (tmp == a->head)
-			break ;
-	}
-	return ;
 }
 
 void	push_chunk_to_a(t_stack *a, t_stack *b)
