@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 22:57:21 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/24 06:43:56 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/24 07:25:59 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,9 @@ void	op_rra(t_stack *a, int print);
 void	op_rrb(t_stack *b, int print);
 void	op_rrr(t_stack *a, t_stack *b, int print);
 void	do_op(t_stack *a, t_stack *b, int opnum, int print);
+
+
+void	solve_small(t_stack *a, t_stack *b);
+void	solve_big(t_stack *a, t_stack *b);
 
 #endif

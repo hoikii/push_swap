@@ -5,7 +5,9 @@ CHECKER_SRCS	= srcs/checker/main.c \
 CHECKER_OBJS	= $(CHECKER_SRCS:.c=.o)
 
 PUSHSWAP_NAME	= push_swap
-PUSHSWAP_SRCS	= srcs/push_swap/main.c
+PUSHSWAP_SRCS	= srcs/push_swap/main.c \
+				  srcs/push_swap/solve_small.c \
+				  srcs/push_swap/solve_big.c
 PUSHSWAP_OBJS	= $(PUSHSWAP_SRCS:.c=.o)
 
 SHARED_SRCS		= srcs/stack.c \
