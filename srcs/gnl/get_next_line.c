@@ -6,15 +6,13 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 18:05:53 by kanlee            #+#    #+#             */
-/*   Updated: 2021/03/13 02:52:01 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/24 06:10:31 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include "get_next_line.h"
-#include "../libft/libft.h"
+#include "libft.h"
 
 static void	set_line(char **line, t_prev_info *stored, char *buf, char *nl)
 {

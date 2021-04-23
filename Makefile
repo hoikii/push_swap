@@ -1,17 +1,18 @@
 CHECKER_NAME	= checker
-CHECKER_SRCS	= srcs/checker/main.c
+CHECKER_SRCS	= srcs/checker/main.c \
+				  srcs/gnl/get_next_line.c \
+				  srcs/gnl/get_next_line_utils.c
 CHECKER_OBJS	= $(CHECKER_SRCS:.c=.o)
 
 PUSHSWAP_NAME	= push_swap
 PUSHSWAP_SRCS	= srcs/push_swap/main.c
 PUSHSWAP_OBJS	= $(PUSHSWAP_SRCS:.c=.o)
 
-SHARED_SRCS		= srcs/gnl/get_next_line.c \
-				  srcs/gnl/get_next_line_utils.c \
-				  srcs/stack.c \
+SHARED_SRCS		= srcs/stack.c \
 				  srcs/cleanup.c \
 				  srcs/fill_stack_a.c \
-				  srcs/operations.c
+				  srcs/operations.c \
+				  srcs/utils.c
 SHARED_OBJS		= $(SHARED_SRCS:.c=.o)
 
 HEADERS		= includes
