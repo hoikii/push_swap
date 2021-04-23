@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 01:09:11 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/23 11:37:48 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/23 12:23:43 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	prepare(t_stack *a, t_stack *chunk_boundary)
 	arr = malloc(sizeof(int) * a->size);
 	sort_a(arr, a);
 	int chunk_cnt = 1;
-#if 1
+#if 0
 	chunk_cnt = (int)(sqrt(a->size + 2) / 2);
 #else
 	if (a->size > 5)
@@ -245,9 +245,9 @@ void	push_chunk_to_b(t_stack *a, t_stack *b, t_stack *chunk_boundary)
 
 	chunk_start_prev = (long long)INT_MAX + 1;
 
-	rotate_finished = 0;
 	while (chunk_boundary->head != NULL)
 	{
+	rotate_finished = 0;
 		while (a->head->num >= chunk_start_prev)
 			do_op(a, b, DO_RA, 1);
 		chunk_start = chunk_boundary->head->num;
