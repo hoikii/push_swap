@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 22:57:21 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/22 01:25:55 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/23 11:38:44 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,17 @@ typedef enum	e_ops {
 	DO_RRR
 }				t_ops;
 
-void	op_sa(t_stack *a);
-void	op_sb(t_stack *b);
-void	op_ss(t_stack *a, t_stack *b);
-void	op_pa(t_stack *a, t_stack *b);
-void	op_pb(t_stack *a, t_stack *b);
-void	op_ra(t_stack *a);
-void	op_rb(t_stack *b);
-void	op_rr(t_stack *a, t_stack *b);
-void	op_rra(t_stack *a);
-void	op_rrb(t_stack *b);
-void	op_rrr(t_stack *a, t_stack *b);
+void	op_sa(t_stack *a, int print);
+void	op_sb(t_stack *b, int print);
+void	op_ss(t_stack *a, t_stack *b, int print);
+void	op_pa(t_stack *a, t_stack *b, int print);
+void	op_pb(t_stack *a, t_stack *b, int print);
+void	op_ra(t_stack *a, int print);
+void	op_rb(t_stack *b, int print);
+void	op_rr(t_stack *a, t_stack *b, int print);
+void	op_rra(t_stack *a, int print);
+void	op_rrb(t_stack *b, int print);
+void	op_rrr(t_stack *a, t_stack *b, int print);
+void	do_op(t_stack *a, t_stack *b, int opnum, int print);
 
 #endif

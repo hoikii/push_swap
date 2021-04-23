@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 23:43:20 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/22 00:56:55 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/23 11:38:09 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,32 +66,6 @@ int chk_op(char *line)
 	return (ERR);
 }
 
-void	do_op(t_stack *a, t_stack *b, int opnum)
-{
-	if (opnum == DO_SA)
-		return (op_sa(a));
-	if (opnum == DO_SB)
-		return (op_sb(b));
-	if (opnum == DO_SS)
-		return (op_ss(a, b));
-	if (opnum == DO_PA)
-		return (op_pa(a, b));
-	if (opnum == DO_PB)
-		return (op_pb(a, b));
-	if (opnum == DO_RA)
-		return (op_ra(a));
-	if (opnum == DO_RB)
-		return (op_rb(b));
-	if (opnum == DO_RR)
-		return (op_rr(a, b));
-	if (opnum == DO_RRA)
-		return (op_rra(a));
-	if (opnum == DO_RRB)
-		return (op_rrb(b));
-	if (opnum == DO_RRR)
-		return (op_rrr(a, b));
-}
-
 int	is_sorted(t_stack a, t_stack b)
 {
 	int		n;
@@ -128,7 +102,7 @@ int main(int ac, char **av) {
 		free(line);
 		if (opnum == ERR)
 			return (error(&a, &b));
-		do_op(&a, &b, opnum);
+		do_op(&a, &b, opnum, 0);
 	}
 	free(line);
 	if (is_sorted(a, b))
