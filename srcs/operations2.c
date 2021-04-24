@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 17:48:24 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/24 06:36:34 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/24 17:15:31 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	op_pa(t_stack *a, t_stack *b, int print)
 	tmp = b->head->num;
 	stack_del_top(b);
 	stack_add_top(a, tmp);
+	b->size--;
 	if (print)
 		ft_putstr_fd("pa\n", STDOUT);
 }
@@ -36,6 +37,7 @@ void	op_pb(t_stack *a, t_stack *b, int print)
 	{
 		b->min = INT_MAX;
 		b->max = INT_MIN;
+		b->size = 0;
 	}
 	tmp = a->head->num;
 	stack_del_top(a);
@@ -44,6 +46,7 @@ void	op_pb(t_stack *a, t_stack *b, int print)
 		b->max = b->head->num;
 	if (b->min > b->head->num)
 		b->min = b->head->num;
+	b->size++;
 	if (print)
 		ft_putstr_fd("pb\n", STDOUT);
 }

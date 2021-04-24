@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 18:02:48 by kanlee            #+#    #+#             */
-/*   Updated: 2021/03/13 02:36:13 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/24 16:47:08 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # include <stdlib.h>
+# include <unistd.h>
 # define BUFFER_SIZE 100
 
 typedef struct	s_prev_info
