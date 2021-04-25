@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 07:16:57 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/25 11:34:37 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/25 14:00:36 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "get_next_line.h"
 #include <math.h>
 
+int g_xxx = 0;
 void	sort_a(int *arr, t_stack *a)
 {
 	int	i;
@@ -96,6 +97,32 @@ int	find_prevmin(t_stack *a)
 	arr = malloc(sizeof(int) * a->size);
 	sort_a(arr, a);
 	ret = arr[1];
+	free(arr);
+	return (ret);
+}
+int	find_pprevmin(t_stack *a)
+{
+	int	*arr;
+	int ret;
+
+	if (a->size < 3)
+		return (a->max);
+	arr = malloc(sizeof(int) * a->size);
+	sort_a(arr, a);
+	ret = arr[2];
+	free(arr);
+	return (ret);
+}
+int	find_pprevmax(t_stack *a)
+{
+	int	*arr;
+	int ret;
+
+	if (a->size < 3)
+		return (a->max);
+	arr = malloc(sizeof(int) * a->size);
+	sort_a(arr, a);
+	ret = arr[a->size - 3];
 	free(arr);
 	return (ret);
 }
@@ -193,6 +220,8 @@ void	push_chunk_to_a(t_stack *a, t_stack *b)
 	{
 int prevmin_dist = INT_MAX;
 prevmin_dist = get_dist(b, find_prevmin(b));
+if (b->size >= 5 && get_dist(b, find_pprevmin(b)) < prevmin_dist)
+	g_xxx++;
 int min_dist = get_dist(b, b->min);
 if (b->size < 5 || prevmin_dist + 1 > min_dist)
 {
@@ -223,6 +252,8 @@ else
 	{
 		int prevmax_dist = INT_MAX;
 		prevmax_dist = get_dist(b, find_prevmax(b));
+if (b->size >= 5 && get_dist(b, find_pprevmax(b)) < prevmax_dist)
+	g_xxx++;
 		int max_dist = get_dist(b, b->max);
 		if (b->size < 3 || prevmax_dist + 1 > max_dist)
 		{
@@ -290,6 +321,8 @@ void	push_chunk_to_b(t_stack *a, t_stack *b, t_stack *chunk_boundary)
 		}
 		
 		if (a->size - bb < a->size - aa + chunk_size + a->size - aa - bb)
+//		if (chunk_start_prev >= INT_MAX)
+//		if (1)
 		{
 			while (a->head->num >= chunk_start_prev)
 				do_op(a, b, DO_RA, 1);
@@ -299,26 +332,24 @@ void	push_chunk_to_b(t_stack *a, t_stack *b, t_stack *chunk_boundary)
 		{
 			if (a->head->num == rotate_end)
 				rotate_finished = 1;
+			int chunk_mid = chunk_boundary->head->mid;
 			if (a->head->num >= chunk_start)
 			{
-				do_op(a, b, DO_PB, 1);
 #if 1
 				if (b->head != NULL)
 				{
-					int chunk_mid = chunk_boundary->head->mid;
 					int this = b->head->num;
 					if (b->head->num < chunk_mid)
 						do_op(a, b, DO_RB, 1);
 				}
 #endif
+				do_op(a, b, DO_PB, 1);
 			}
 			else
 			{
-#if 0
-				if (b->head != NULL && b->head->num > b->max)
+				if (b->head != NULL && b->head->num < chunk_mid)
 					do_op(a, b, DO_RR, 1);
 				else
-#endif
 					do_op(a, b, DO_RA, 1);
 			}
 			if (rotate_finished)
@@ -337,14 +368,23 @@ void	push_chunk_to_b(t_stack *a, t_stack *b, t_stack *chunk_boundary)
 		{
 //			if (a->head->num == rotate_end)
 //				rotate_finished = 1;
+			int chunk_mid = chunk_boundary->head->mid;
 			if (a->head->num >= chunk_start)
 			{
+#if 1
+				if (b->head != NULL)
+				{
+					int this = b->head->num;
+					if (b->head->num < chunk_mid)
+						do_op(a, b, DO_RB, 1);
+				}
+#endif
 				do_op(a, b, DO_PB, 1);
 				do_op(a, b, DO_RRA, 1);
 			}
 			else
 			{
-				if (b->head != NULL && b->head->num > b->max)
+				if (b->head != NULL && b->head->num >= chunk_mid)
 					do_op(a, b, DO_RRR, 1);
 				else
 					do_op(a, b, DO_RRA, 1);
@@ -389,5 +429,6 @@ void	solve_big(t_stack *a, t_stack *b)
 		prepare(a, &chunk_boundary);
 		push_chunk_to_b(a, b, &chunk_boundary);
 		finalize(a);
+printf("gxxx=%d\n",g_xxx);
 }
 
