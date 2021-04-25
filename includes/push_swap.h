@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 22:57:21 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/24 08:35:41 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/25 11:07:29 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct		s_item {
 	struct s_item	*prev;
 	struct s_item	*next;
 	int				num;
+	int				mid;
 }					t_item;
 
 typedef struct		s_stack {
@@ -39,6 +40,8 @@ typedef struct		s_stack {
 void	free_stacks(t_stack *a, t_stack *b);
 int		error(t_stack *a, t_stack *b);
 
+int		ft_min(int a, int b);
+int		ft_max(int a, int b);
 void	prn_stack(t_stack st);
 int		is_sorted(t_stack a, t_stack b);
 

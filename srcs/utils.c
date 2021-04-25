@@ -6,12 +6,26 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 05:52:08 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/24 07:04:06 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/24 20:23:57 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft.h"
+
+int		ft_min(int a, int b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
+
+int		ft_max(int a, int b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
 
 void	prn_stack(t_stack st)
 {
