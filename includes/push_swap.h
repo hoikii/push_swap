@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 22:57:21 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/25 11:07:29 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/25 21:10:51 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,13 @@ int		error(t_stack *a, t_stack *b);
 
 int		ft_min(int a, int b);
 int		ft_max(int a, int b);
+int		ft_abs(int a);
 void	prn_stack(t_stack st);
 int		is_sorted(t_stack a, t_stack b);
 
 int		fill_stack_a(t_stack *a, char **av);
+void	push_chunk_to_b(t_stack *a, t_stack *b, t_stack *chunk_boundary);
+void	push_chunk_to_a(t_stack *a, t_stack *b);
 
 void	stack_add_top(t_stack *stack, int n);
 void	stack_del_top(t_stack *stack);

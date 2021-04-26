@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 05:52:08 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/24 20:23:57 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/25 21:10:15 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ int		ft_max(int a, int b)
 	if (a > b)
 		return (a);
 	return (b);
+}
+
+int		ft_abs(int a)
+{
+	if (a >= 0)
+		return (a);
+	return (-a);
 }
 
 void	prn_stack(t_stack st)
