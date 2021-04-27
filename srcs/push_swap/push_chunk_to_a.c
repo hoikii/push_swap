@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 18:35:40 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/27 11:46:30 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/27 20:19:38 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,6 @@
 #include "push_swap.h"
 #include "libft.h"
 #include <stdio.h>
-
-static void	sort_a(int *arr, t_stack *a)
-{
-	int	i;
-	int	j;
-	t_item	*tmp;
-	
-	tmp = a->head;
-	i = -1;
-	while (++i < a->size)
-	{
-		arr[i] = tmp->num;
-		tmp = tmp->next;
-	}
-	for (int i = 1; i < a->size; i++)
-	{
-		int key = arr[i];
-		for (j = i-1; j >=0 && arr[j] > key; j--)
-			arr[j+1] = arr[j];
-		arr[j+1] = key;
-	}
-}
 
 static void	prepare(t_stack *b, t_stack *b_sorted)
 {
@@ -119,7 +97,6 @@ int		push_min_to_a(t_stack *a, t_stack *b, int min, t_stack *b_sorted)
 	min_dist = get_dist(b, b->head->num, min);
 	next_min = idx->next->num;
 	nextmin_dist = get_dist(b, b->head->num, next_min);
-#if 1
 	if (ft_abs(nextmin_dist) + ft_abs(get_dist(b, next_min, min)) < ft_abs(min_dist) + ft_abs(get_dist(b, min, next_min)) )
 //	if (ft_abs(nextmin_dist)  < ft_abs(min_dist) )
 		ret = push_min_to_a(a, b, next_min, b_sorted) + 1;
@@ -133,32 +110,6 @@ int		push_min_to_a(t_stack *a, t_stack *b, int min, t_stack *b_sorted)
 	del_item(b_sorted, b->head->num);
 	do_op(a, b, DO_PA, 1);
 	return (ret);
-#else
-	if (b->size < 5 || ft_abs(nextmin_dist) + 1 > ft_abs(min_dist))
-	{
-		if (min_dist > 0)
-		{
-			while (min_dist--)
-				do_op(a, b, DO_RB, 1);
-		}
-		else 
-		{
-			while (min_dist++ < 0)
-				do_op(a, b, DO_RRB, 1);
-		}
-		do_op(a, b, DO_PA, 1);
-		do_op(a, b, DO_RA, 1);
-	}
-	else
-	{
-		rotate_n_to_top(b, find_prevmin(b));
-		do_op(a, b, DO_PA, 1);
-		rotate_n_to_top(b, b->min);
-		do_op(a, b, DO_PA, 1);
-		do_op(a, b, DO_RA, 1);
-		do_op(a, b, DO_RA, 1);
-	}
-#endif
 }
 
 int		push_max_to_a(t_stack *a, t_stack *b, int max, int depth, t_stack *b_sorted)
@@ -177,7 +128,6 @@ int		push_max_to_a(t_stack *a, t_stack *b, int max, int depth, t_stack *b_sorted
 	prevmax = idx->prev->num;
 	prevmax_dist = get_dist(b, b->head->num, prevmax);
 
-#if 1
 	if (ft_abs(prevmax_dist) + ((depth==1)?1:2) + ft_abs(get_dist(b, prevmax, max)) < ft_abs(max_dist) + ft_abs(get_dist(b, max, prevmax)) )
 //	if (ft_abs(prevmax_dist) + ((depth==1)?1:2)  < ft_abs(max_dist) )
 		ret = push_max_to_a(a, b, prevmax, depth + 1, b_sorted) + 1;
@@ -192,36 +142,6 @@ int		push_max_to_a(t_stack *a, t_stack *b, int max, int depth, t_stack *b_sorted
 	do_op(a, b, DO_PA, 1);
 	if (depth >= 3)
 		do_op(a, b, DO_RA, 1);
-	return (ret);
-#else
-		if (b->size < 3 || ft_abs(prevmax_dist) + 1 > ft_abs(max_dist))
-		{
-			if (max_dist > 0)
-			{
-				while (max_dist--)
-					do_op(a, b, DO_RB, 1);
-			}
-			else
-			{
-				while (max_dist++ < 0)
-					do_op(a, b, DO_RRB, 1);
-			}
-		del_item(b_sorted, b->head->num);
-			do_op(a, b, DO_PA, 1);
-		}
-		else
-		{
-			rotate_n_to_top(b, find_prevmax(b));
-		del_item(b_sorted, b->head->num);
-			do_op(a, b, DO_PA, 1);
-			rotate_n_to_top(b, b->max);
-		del_item(b_sorted, b->head->num);
-			do_op(a, b, DO_PA, 1);
-			do_op(a, b, DO_SA, 1);
-		}
-#endif
-
-	ret = 1;
 	return (ret);
 }
 

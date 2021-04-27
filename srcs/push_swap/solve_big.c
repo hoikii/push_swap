@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 07:16:57 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/27 18:14:30 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/27 20:33:52 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,6 @@
 #include "push_swap.h"
 #include "get_next_line.h"
 #include <math.h>
-
-static void	sort_a(int *arr, t_stack *a)
-{
-	int	i;
-	int	j;
-	t_item	*tmp;
-	
-	tmp = a->head;
-	i = -1;
-	while (++i < a->size)
-	{
-		arr[i] = tmp->num;
-		tmp = tmp->next;
-	}
-	for (int i = 1; i < a->size; i++)
-	{
-		int key = arr[i];
-		for (j = i-1; j >=0 && arr[j] > key; j--)
-			arr[j+1] = arr[j];
-		arr[j+1] = key;
-	}
-}
 
 void	prepare(t_stack *a, t_stack *chunk_boundary)
 {
@@ -63,10 +41,6 @@ void	prepare(t_stack *a, t_stack *chunk_boundary)
 		int mididx = a->size / (double)chunk_cnt * (i + i + 1) / 2;
 		chunk_boundary->head->mid = arr[mididx];
 	}
-
-
-//	for (int i=0; i < a->size; i++)
-//		printf("%d\n", arr[i]);
 	free(arr);
 
 }

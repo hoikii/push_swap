@@ -19,7 +19,8 @@ SHARED_SRCS		= srcs/stack.c \
 				  srcs/operations.c \
 				  srcs/operations2.c \
 				  srcs/operations3.c \
-				  srcs/utils.c
+				  srcs/utils.c \
+				  srcs/compress_rotation.c
 SHARED_OBJS		= $(SHARED_SRCS:.c=.o)
 
 HEADERS		= includes

@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 22:57:21 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/27 18:14:07 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/27 20:27:58 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct		s_stack {
 	int				size;
 	int				min;
 	int				max;
-	int				rotate_reserved;
+	int				rotate_cnt;
 }					t_stack;
 
 void	free_stacks(t_stack *a, t_stack *b);
@@ -70,7 +70,6 @@ typedef enum	e_ops {
 	DO_RRR
 }				t_ops;
 
-void	prn_rotation(t_stack *a, t_stack *b, int print);
 void	op_sa(t_stack *a, int print);
 void	op_sb(t_stack *b, int print);
 void	op_ss(t_stack *a, t_stack *b, int print);
@@ -88,5 +87,7 @@ void	do_op(t_stack *a, t_stack *b, int opnum, int print);
 void	solve_small(t_stack *a, t_stack *b);
 void	solve_big(t_stack *a, t_stack *b);
 void	find_minmax(t_stack *a);
+void	sort_a(int *arr, t_stack *a);
+void	prn_rotation(t_stack *a, t_stack *b, int print);
 
 #endif

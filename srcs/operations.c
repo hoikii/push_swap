@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 17:48:24 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/27 19:40:24 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/27 20:26:50 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	op_sa(t_stack *a, int print)
 
 	if (a->head == NULL)
 		return ;
-	if (a->rotate_reserved != 0)
+	if (print && a->rotate_cnt != 0)
 		prn_rotation(a, NULL, print);
 	tmp = a->head->next->num;
 	a->head->next->num = a->head->num;
@@ -34,7 +34,7 @@ void	op_sb(t_stack *b, int print)
 
 	if (b->head == NULL)
 		return ;
-	if (b->rotate_reserved != 0)
+	if (print && b->rotate_cnt != 0)
 		prn_rotation(NULL, b, print);
 	tmp = b->head->next->num;
 	b->head->next->num = b->head->num;
@@ -45,7 +45,7 @@ void	op_sb(t_stack *b, int print)
 
 void	op_ss(t_stack *a, t_stack *b, int print)
 {
-	if (a->rotate_reserved != 0 || b->rotate_reserved != 0)
+	if (print && (a->rotate_cnt != 0 || b->rotate_cnt != 0))
 		prn_rotation(a, b, print);
 	op_sa(a, 0);
 	op_sb(b, 0);

@@ -6,11 +6,36 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 08:34:47 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/24 08:35:07 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/27 20:20:17 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	sort_a(int *arr, t_stack *a)
+{
+	int	i;
+	int	j;
+	int		key;
+	t_item	*tmp;
+	
+	tmp = a->head;
+	i = -1;
+	while (++i < a->size)
+	{
+		arr[i] = tmp->num;
+		tmp = tmp->next;
+	}
+	i = 0;
+	while (++i < a->size)
+	{
+		key = arr[j = i];
+		j = i;
+		while (--j >= 0 && arr[j] > key)
+			arr[j + 1] = arr[j];
+		arr[j + 1] = key;
+	}
+}
 
 void	find_minmax(t_stack *a)
 {
