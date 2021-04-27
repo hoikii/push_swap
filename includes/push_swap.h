@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 22:57:21 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/25 21:10:51 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/27 18:14:07 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct		s_stack {
 	int				size;
 	int				min;
 	int				max;
+	int				rotate_reserved;
 }					t_stack;
 
 void	free_stacks(t_stack *a, t_stack *b);
@@ -69,17 +70,18 @@ typedef enum	e_ops {
 	DO_RRR
 }				t_ops;
 
+void	prn_rotation(t_stack *a, t_stack *b, int print);
 void	op_sa(t_stack *a, int print);
 void	op_sb(t_stack *b, int print);
 void	op_ss(t_stack *a, t_stack *b, int print);
 void	op_pa(t_stack *a, t_stack *b, int print);
 void	op_pb(t_stack *a, t_stack *b, int print);
-void	op_ra(t_stack *a, int print);
-void	op_rb(t_stack *b, int print);
-void	op_rr(t_stack *a, t_stack *b, int print);
-void	op_rra(t_stack *a, int print);
-void	op_rrb(t_stack *b, int print);
-void	op_rrr(t_stack *a, t_stack *b, int print);
+void	op_ra(t_stack *a);
+void	op_rb(t_stack *b);
+void	op_rr(t_stack *a, t_stack *b);
+void	op_rra(t_stack *a);
+void	op_rrb(t_stack *b);
+void	op_rrr(t_stack *a, t_stack *b);
 void	do_op(t_stack *a, t_stack *b, int opnum, int print);
 
 

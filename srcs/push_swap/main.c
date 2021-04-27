@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 01:09:11 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/24 07:28:16 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/27 18:56:38 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int			main(int ac, char **av)
 		return (error(&a, &b));
 	if (!is_sorted(a, b))
 	{
-		a.size = ft_stacksize(a);
+//		a.size = ft_stacksize(a);
 		if (a.size <= 5)
 			solve_small(&a, &b);
 		else

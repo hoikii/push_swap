@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 17:51:54 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/24 06:27:58 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/27 18:56:12 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int			fill_stack_a(t_stack *a, char **av)
 				return (FAIL);
 			}
 			stack_add_end(a, n);
+			a->size++;
 		}
 		free_split(str);
 	}

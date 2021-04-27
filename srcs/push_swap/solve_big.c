@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 07:16:57 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/27 12:45:15 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/27 18:14:30 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	finalize(t_stack *a)
 	find_minmax(a);
 	while (a->head->num != a->min)
 		do_op(a, NULL, DO_RRA, 1);
+	prn_rotation(a, NULL, 1);
 }
 
 void	solve_big(t_stack *a, t_stack *b)

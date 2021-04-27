@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 17:48:24 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/24 17:00:31 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/27 19:40:24 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	op_sa(t_stack *a, int print)
 
 	if (a->head == NULL)
 		return ;
+	if (a->rotate_reserved != 0)
+		prn_rotation(a, NULL, print);
 	tmp = a->head->next->num;
 	a->head->next->num = a->head->num;
 	a->head->num = tmp;
@@ -32,6 +34,8 @@ void	op_sb(t_stack *b, int print)
 
 	if (b->head == NULL)
 		return ;
+	if (b->rotate_reserved != 0)
+		prn_rotation(NULL, b, print);
 	tmp = b->head->next->num;
 	b->head->next->num = b->head->num;
 	b->head->num = tmp;
@@ -41,6 +45,8 @@ void	op_sb(t_stack *b, int print)
 
 void	op_ss(t_stack *a, t_stack *b, int print)
 {
+	if (a->rotate_reserved != 0 || b->rotate_reserved != 0)
+		prn_rotation(a, b, print);
 	op_sa(a, 0);
 	op_sb(b, 0);
 	if (print)
@@ -60,15 +66,15 @@ void	do_op(t_stack *a, t_stack *b, int opnum, int print)
 	if (opnum == DO_PB)
 		return (op_pb(a, b, print));
 	if (opnum == DO_RA)
-		return (op_ra(a, print));
+		return (op_ra(a));
 	if (opnum == DO_RB)
-		return (op_rb(b, print));
+		return (op_rb(b));
 	if (opnum == DO_RR)
-		return (op_rr(a, b, print));
+		return (op_rr(a, b));
 	if (opnum == DO_RRA)
-		return (op_rra(a, print));
+		return (op_rra(a));
 	if (opnum == DO_RRB)
-		return (op_rrb(b, print));
+		return (op_rrb(b));
 	if (opnum == DO_RRR)
-		return (op_rrr(a, b, print));
+		return (op_rrr(a, b));
 }
