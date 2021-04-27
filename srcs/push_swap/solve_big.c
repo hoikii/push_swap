@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 07:16:57 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/26 09:09:49 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/27 12:45:15 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	prepare(t_stack *a, t_stack *chunk_boundary)
 #if 0
 	chunk_cnt = (int)sqrt(a->size / 8);
 #else
-	if (a->size > 5)
+	if (a->size > 49)
 		chunk_cnt = 2;
 	if (a->size > 99)
 		chunk_cnt = 3;

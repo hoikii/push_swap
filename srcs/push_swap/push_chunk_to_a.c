@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 18:35:40 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/26 09:52:17 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/27 11:46:30 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,33 +36,6 @@ static void	sort_a(int *arr, t_stack *a)
 		arr[j+1] = key;
 	}
 }
-int	find_prevmax(t_stack *a)
-{
-	int	*arr;
-	int ret;
-
-	if (a->size == 1)
-		return (a->max);
-	arr = malloc(sizeof(int) * a->size);
-	sort_a(arr, a);
-	ret = arr[a->size - 2];
-	free(arr);
-	return (ret);
-}
-
-int	find_prevmin(t_stack *a)
-{
-	int	*arr;
-	int ret;
-
-	if (a->size == 1)
-		return (a->max);
-	arr = malloc(sizeof(int) * a->size);
-	sort_a(arr, a);
-	ret = arr[1];
-	free(arr);
-	return (ret);
-}
 
 static void	prepare(t_stack *b, t_stack *b_sorted)
 {
@@ -79,14 +52,16 @@ static void	prepare(t_stack *b, t_stack *b_sorted)
 }
 
 
-int	get_dist(t_stack *a, int n)
+int	get_dist(t_stack *a, int from, int to)
 {
 	t_item	*tmp;
 	int		i;
 	
 	tmp = a->head;
+	while (tmp->num != from)
+		tmp = tmp->next;
 	i = 0;
-	while (tmp->num != n)
+	while (tmp->num != to)
 	{
 		i++;
 		tmp = tmp->next;
@@ -121,6 +96,7 @@ void	rotate_n_to_top(t_stack *a, int n)
 			do_op(NULL, a, DO_RRB, 1);
 	}
 }
+
 static void del_item(t_stack *b_sorted, int num)
 {
 	while (b_sorted->head->num != num)
@@ -140,11 +116,12 @@ int		push_min_to_a(t_stack *a, t_stack *b, int min, t_stack *b_sorted)
 	idx = b_sorted->head;
 	while (idx->num != min)
 		idx = idx->next;
-	min_dist = get_dist(b, min);
+	min_dist = get_dist(b, b->head->num, min);
 	next_min = idx->next->num;
-	nextmin_dist = get_dist(b, next_min);
+	nextmin_dist = get_dist(b, b->head->num, next_min);
 #if 1
-	if (ft_abs(nextmin_dist) < ft_abs(min_dist) && nextmin_dist * min_dist >= 0)
+	if (ft_abs(nextmin_dist) + ft_abs(get_dist(b, next_min, min)) < ft_abs(min_dist) + ft_abs(get_dist(b, min, next_min)) )
+//	if (ft_abs(nextmin_dist)  < ft_abs(min_dist) )
 		ret = push_min_to_a(a, b, next_min, b_sorted) + 1;
 	while (b->head->num != min)
 	{
@@ -196,12 +173,13 @@ int		push_max_to_a(t_stack *a, t_stack *b, int max, int depth, t_stack *b_sorted
 	idx = b_sorted->head;
 	while (idx->num != max)
 		idx = idx->next;
-	max_dist = get_dist(b, max);
+	max_dist = get_dist(b, b->head->num, max);
 	prevmax = idx->prev->num;
-	prevmax_dist = get_dist(b, prevmax);
+	prevmax_dist = get_dist(b, b->head->num, prevmax);
 
 #if 1
-	if (ft_abs(prevmax_dist) + 1 < ft_abs(max_dist) && prevmax_dist * max_dist >= 0)
+	if (ft_abs(prevmax_dist) + ((depth==1)?1:2) + ft_abs(get_dist(b, prevmax, max)) < ft_abs(max_dist) + ft_abs(get_dist(b, max, prevmax)) )
+//	if (ft_abs(prevmax_dist) + ((depth==1)?1:2)  < ft_abs(max_dist) )
 		ret = push_max_to_a(a, b, prevmax, depth + 1, b_sorted) + 1;
 	while (b->head->num != max)
 	{
@@ -259,9 +237,11 @@ void	push_chunk_to_a(t_stack *a, t_stack *b)
 	while (b->head != NULL)
 	{
 		find_minmax(b);
-		max_dist = get_dist(b, b->max);
-		min_dist = get_dist(b, b->min);
-		int flag = (b->size > 5) ? 3 : 1;
+		max_dist = get_dist(b, b->head->num, b->max);
+		min_dist = get_dist(b, b->head->num, b->min);
+		int flag = (b->size > 5) ? 2 : 1;
+		flag = 1;
+		flag = (b->size > 5) ? 0 : 2;
 		if (ft_abs(min_dist) + flag < ft_abs(max_dist))
 		{
 			depth_cnt = push_min_to_a(a, b, b->min, &b_sorted);
@@ -278,4 +258,3 @@ void	push_chunk_to_a(t_stack *a, t_stack *b)
 		}
 	}
 }
-

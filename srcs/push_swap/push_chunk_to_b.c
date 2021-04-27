@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 18:28:30 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/25 21:15:58 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/27 12:29:35 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,11 @@ static void	push_or_rotate(t_stack *a, t_stack *b, t_stack *chunk_boundary)
 	chunk_start = chunk_boundary->head->num;
 	if (a->head->num >= chunk_start)
 	{
-		if (b->head != NULL && (b->head->num < chunk_mid))
-			do_op(a, b, DO_RB, 1);
+		if (a->head->num >= chunk_mid)
+			{
+				while (b->head != NULL && (b->head->num < chunk_mid) && (b->max >= chunk_mid))
+					do_op(a, b, DO_RB, 1);
+			}
 		do_op(a, b, DO_PB, 1);
 	}
 	else
