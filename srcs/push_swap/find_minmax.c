@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 08:34:47 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/27 20:20:17 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/29 01:37:25 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	sort_a(int *arr, t_stack *a)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	int		key;
 	t_item	*tmp;
-	
+
 	tmp = a->head;
 	i = -1;
 	while (++i < a->size)
@@ -29,7 +29,7 @@ void	sort_a(int *arr, t_stack *a)
 	i = 0;
 	while (++i < a->size)
 	{
-		key = arr[j = i];
+		key = arr[i];
 		j = i;
 		while (--j >= 0 && arr[j] > key)
 			arr[j + 1] = arr[j];

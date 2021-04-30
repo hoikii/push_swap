@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 22:57:21 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/27 20:27:58 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/29 01:05:34 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct		s_stack {
 	int				rotate_cnt;
 }					t_stack;
 
-void	free_stacks(t_stack *a, t_stack *b);
+void	free_stack(t_stack *a);
 int		error(t_stack *a, t_stack *b);
 
 int		ft_min(int a, int b);
@@ -83,11 +83,10 @@ void	op_rrb(t_stack *b);
 void	op_rrr(t_stack *a, t_stack *b);
 void	do_op(t_stack *a, t_stack *b, int opnum, int print);
 
-
 void	solve_small(t_stack *a, t_stack *b);
 void	solve_big(t_stack *a, t_stack *b);
 void	find_minmax(t_stack *a);
 void	sort_a(int *arr, t_stack *a);
-void	prn_rotation(t_stack *a, t_stack *b, int print);
+void	prn_rotation(t_stack *a, t_stack *b);
 
 #endif

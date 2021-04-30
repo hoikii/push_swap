@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 17:48:24 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/27 20:26:50 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/29 00:37:32 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	op_sa(t_stack *a, int print)
 	if (a->head == NULL)
 		return ;
 	if (print && a->rotate_cnt != 0)
-		prn_rotation(a, NULL, print);
+		prn_rotation(a, NULL);
 	tmp = a->head->next->num;
 	a->head->next->num = a->head->num;
 	a->head->num = tmp;
@@ -35,7 +35,7 @@ void	op_sb(t_stack *b, int print)
 	if (b->head == NULL)
 		return ;
 	if (print && b->rotate_cnt != 0)
-		prn_rotation(NULL, b, print);
+		prn_rotation(NULL, b);
 	tmp = b->head->next->num;
 	b->head->next->num = b->head->num;
 	b->head->num = tmp;
@@ -46,7 +46,7 @@ void	op_sb(t_stack *b, int print)
 void	op_ss(t_stack *a, t_stack *b, int print)
 {
 	if (print && (a->rotate_cnt != 0 || b->rotate_cnt != 0))
-		prn_rotation(a, b, print);
+		prn_rotation(a, b);
 	op_sa(a, 0);
 	op_sb(b, 0);
 	if (print)
@@ -55,6 +55,29 @@ void	op_ss(t_stack *a, t_stack *b, int print)
 
 void	do_op(t_stack *a, t_stack *b, int opnum, int print)
 {
+#if 0
+	static int prev = -1;
+	if (opnum == DO_PA)
+	{
+		if (prev == DO_RRB)
+			b->g_rbparrbpa++;
+		else if (prev == DO_RB)
+			prev = opnum;
+		else
+			prev = -1;
+	}
+	else if (opnum==DO_RRB)
+	{
+		if (prev == DO_PA)
+			prev = opnum;
+		else
+			prev = -1;
+	}
+	else if (opnum == DO_RB)
+		prev = DO_RB;
+	else
+		prev =-1;
+#endif
 	if (opnum == DO_SA)
 		return (op_sa(a, print));
 	if (opnum == DO_SB)

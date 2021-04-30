@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 18:35:40 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/27 20:19:38 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/30 16:27:12 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	rotate_n_to_top(t_stack *a, int n)
 {
 	t_item	*tmp;
 	int		r_cnt;
-	int		rr_cnt;
 
 	tmp = a->head;
 	r_cnt = 0;
@@ -62,15 +61,14 @@ void	rotate_n_to_top(t_stack *a, int n)
 		r_cnt++;
 		tmp = tmp->next;
 	}
-	rr_cnt = a->size - r_cnt;
-	if (r_cnt < rr_cnt)
+	if (r_cnt < a->size - r_cnt)
 	{
-		while (r_cnt--)
+		while (r_cnt-- > 0)
 			do_op(NULL, a, DO_RB, 1);
 	}
 	else
 	{
-		while (rr_cnt--)
+		while (a->size - r_cnt++)
 			do_op(NULL, a, DO_RRB, 1);
 	}
 }

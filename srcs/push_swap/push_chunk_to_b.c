@@ -6,14 +6,14 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 18:28:30 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/27 12:29:35 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/30 16:32:06 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "push_swap.h"
 
-static void	reset_start_position(t_stack *a, t_stack *b, long long edge)
+static void	reset_start_position(t_stack *a, long long edge)
 {
 	t_item	*tmp;
 	int		skip_top;
@@ -25,15 +25,15 @@ static void	reset_start_position(t_stack *a, t_stack *b, long long edge)
 		skip_top++;
 		tmp = tmp->next;
 	}
-	if (2 * skip_top < a->size)
+	if (skip_top < a->size - skip_top)
 	{
 		while (skip_top-- > 0)
-			do_op(a, b, DO_RA, 1);
+			do_op(a, NULL, DO_RA, 1);
 	}
 	else
 	{
 		while (a->size - skip_top++ > 0)
-			do_op(a, b, DO_RRA, 1);
+			do_op(a, NULL, DO_RRA, 1);
 	}
 }
 
@@ -46,9 +46,9 @@ static void	push_or_rotate(t_stack *a, t_stack *b, t_stack *chunk_boundary)
 	chunk_start = chunk_boundary->head->num;
 	if (a->head->num >= chunk_start)
 	{
-		if (a->head->num >= chunk_mid)
+		if (a->head->num >= chunk_mid && b->head != NULL && b->max >= chunk_mid)
 			{
-				while (b->head != NULL && (b->head->num < chunk_mid) && (b->max >= chunk_mid))
+				while (b->head->num < chunk_mid)
 					do_op(a, b, DO_RB, 1);
 			}
 		do_op(a, b, DO_PB, 1);
@@ -72,7 +72,7 @@ void		push_chunk_to_b(t_stack *a, t_stack *b, t_stack *chunk_boundary)
 	while (chunk_boundary->head != NULL)
 	{
 		finished = 0;
-		reset_start_position(a, b, chunk_start_prev);
+		reset_start_position(a, chunk_start_prev);
 		rotate_end = a->head->prev->num;
 		while (!finished && a->head->num < chunk_start_prev)
 		{

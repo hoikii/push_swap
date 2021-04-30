@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 23:43:20 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/24 06:22:26 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/29 00:56:07 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int			main(int ac, char **av)
 		ft_putstr_fd("OK\n", STDOUT);
 	else
 		ft_putstr_fd("KO\n", STDOUT);
-	free_stacks(&a, &b);
+	free_stack(&a);
+	free_stack(&b);
 	return (0);
 }

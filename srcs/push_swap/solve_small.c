@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 07:15:41 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/27 18:14:47 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/29 00:34:39 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,6 @@ void		solve_small(t_stack *a, t_stack *b)
 		solve_5(a, b);
 	else
 		solve_big(a, b);
-	prn_rotation(a, b, 1);
+	prn_rotation(a, b);
 	return ;
 }

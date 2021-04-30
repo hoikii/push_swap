@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 17:48:24 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/27 20:27:08 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/29 00:38:10 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	op_pa(t_stack *a, t_stack *b, int print)
 	if (b->head == NULL)
 		return ;
 	if (print && (a->rotate_cnt != 0 || b->rotate_cnt != 0))
-		prn_rotation(a, b, print);
+		prn_rotation(a, b);
 	tmp = b->head->num;
 	stack_del_top(b);
 	stack_add_top(a, tmp);
@@ -43,7 +43,7 @@ void	op_pb(t_stack *a, t_stack *b, int print)
 		b->size = 0;
 	}
 	if (print && (a->rotate_cnt != 0 || b->rotate_cnt != 0))
-		prn_rotation(a, b, print);
+		prn_rotation(a, b);
 	tmp = a->head->num;
 	stack_del_top(a);
 	stack_add_top(b, tmp);

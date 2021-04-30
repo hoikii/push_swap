@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 07:16:57 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/27 20:33:52 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/29 00:54:21 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 void	prepare(t_stack *a, t_stack *chunk_boundary)
 {
 	int	*arr;
+	int	i;
 
 	arr = malloc(sizeof(int) * a->size);
 	sort_a(arr, a);
@@ -34,7 +35,7 @@ void	prepare(t_stack *a, t_stack *chunk_boundary)
 	if (a->size > 499)
 		chunk_cnt = 6;
 #endif
-	int i = -1;
+	i = -1;
 	while (++i < chunk_cnt)
 	{
 		stack_add_top(chunk_boundary, arr[a->size / chunk_cnt * i]);
@@ -42,7 +43,6 @@ void	prepare(t_stack *a, t_stack *chunk_boundary)
 		chunk_boundary->head->mid = arr[mididx];
 	}
 	free(arr);
-
 }
 
 void	finalize(t_stack *a)
@@ -52,7 +52,7 @@ void	finalize(t_stack *a)
 	find_minmax(a);
 	while (a->head->num != a->min)
 		do_op(a, NULL, DO_RRA, 1);
-	prn_rotation(a, NULL, 1);
+	prn_rotation(a, NULL);
 }
 
 void	solve_big(t_stack *a, t_stack *b)
@@ -62,5 +62,6 @@ void	solve_big(t_stack *a, t_stack *b)
 	ft_memset(&chunk_boundary, 0, sizeof(t_stack));
 	prepare(a, &chunk_boundary);
 	push_chunk_to_b(a, b, &chunk_boundary);
+	free_stack(&chunk_boundary);
 	finalize(a);
 }
