@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 22:57:21 by kanlee            #+#    #+#             */
-/*   Updated: 2021/05/01 17:31:50 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/05/01 19:28:19 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,23 @@ typedef struct		s_stack {
 	struct s_stack	*item_ordered;
 }					t_stack;
 
-void	free_stack(t_stack *a);
-int		error(t_stack *a, t_stack *b);
+void				free_stack(t_stack *a);
+int					error(t_stack *a, t_stack *b);
 
-int		ft_min(int a, int b);
-int		ft_max(int a, int b);
-int		ft_abs(int a);
-void	prn_stack(t_stack st);
-int		is_sorted(t_stack a, t_stack b);
+int					ft_min(int a, int b);
+int					ft_max(int a, int b);
+int					ft_abs(int a);
+void				prn_stack(t_stack st);
+int					is_sorted(t_stack a, t_stack b);
 
-int		fill_stack_a(t_stack *a, char **av);
-void	push_chunk_to_b(t_stack *a, t_stack *b, t_stack *chunk_boundary);
-void	push_chunk_to_a(t_stack *a, t_stack *b);
+int					fill_stack_a(t_stack *a, char **av);
+void				push_chunk_to_b(t_stack *a, t_stack *b, t_stack *boundary);
+void				push_chunk_to_a(t_stack *a, t_stack *b);
 
-void	stack_add_top(t_stack *stack, int n);
-void	stack_del_top(t_stack *stack);
-void	stack_add_end(t_stack *stack, int n);
-void	stack_del_item(t_stack *stack, int n);
+void				stack_add_top(t_stack *stack, int n);
+void				stack_del_top(t_stack *stack);
+void				stack_add_end(t_stack *stack, int n);
+void				stack_del_item(t_stack *stack, int n);
 
 typedef enum	e_ops {
 	ERR = -1,
@@ -72,25 +72,25 @@ typedef enum	e_ops {
 	DO_RRR
 }				t_ops;
 
-void	op_sa(t_stack *a, int print);
-void	op_sb(t_stack *b, int print);
-void	op_ss(t_stack *a, t_stack *b, int print);
-void	op_pa(t_stack *a, t_stack *b, int print);
-void	op_pb(t_stack *a, t_stack *b, int print);
-void	op_ra(t_stack *a);
-void	op_rb(t_stack *b);
-void	op_rr(t_stack *a, t_stack *b);
-void	op_rra(t_stack *a);
-void	op_rrb(t_stack *b);
-void	op_rrr(t_stack *a, t_stack *b);
-void	do_op(t_stack *a, t_stack *b, int opnum, int print);
+void				op_sa(t_stack *a, int print);
+void				op_sb(t_stack *b, int print);
+void				op_ss(t_stack *a, t_stack *b, int print);
+void				op_pa(t_stack *a, t_stack *b, int print);
+void				op_pb(t_stack *a, t_stack *b, int print);
+void				op_ra(t_stack *a);
+void				op_rb(t_stack *b);
+void				op_rr(t_stack *a, t_stack *b);
+void				op_rra(t_stack *a);
+void				op_rrb(t_stack *b);
+void				op_rrr(t_stack *a, t_stack *b);
+void				do_op(t_stack *a, t_stack *b, int opnum, int print);
 
-void	solve_small(t_stack *a, t_stack *b);
-void	solve_big(t_stack *a, t_stack *b);
-void	find_minmax(t_stack *a);
-int		get_dist(t_stack *a, int from, int to);
-void	sort_a(int *arr, t_stack *a);
-void	push_minmax_to_a(t_stack *a, t_stack *b);
-void	prn_rotation(t_stack *a, t_stack *b);
+void				solve_small(t_stack *a, t_stack *b);
+void				solve_big(t_stack *a, t_stack *b);
+void				find_minmax(t_stack *a);
+int					get_dist(t_stack *a, int from, int to);
+void				sort_a(int *arr, t_stack *a);
+void				push_minmax_to_a(t_stack *a, t_stack *b);
+void				prn_rotation(t_stack *a, t_stack *b);
 
 #endif

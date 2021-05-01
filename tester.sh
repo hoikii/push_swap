@@ -37,11 +37,12 @@ function test_avg() {
 
 
 if [ "$1" = "" ]; then
-#	test_avg 0 99
+	test_avg 0 99
 	test_avg 0 499
 else
 	ARG=`ruby -e "puts (1..$1).to_a.shuffle.join(' ')"`
 	./push_swap $ARG
-	echo -e "Test in range from 1 to" $1
-	./push_swap $ARG | ./checker $ARG
+	echo -e "=== Test in range from 1 to" $1 "==="
+	echo -e "checker = " `./push_swap $ARG | ./checker $ARG`
+	echo -e "count = " `./push_swap $ARG | wc -l`
 fi

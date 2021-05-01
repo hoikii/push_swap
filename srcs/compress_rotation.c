@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 19:50:48 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/29 01:01:59 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/05/01 19:34:30 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,23 +58,17 @@ static void	prn_rotation_both(t_stack *a, t_stack *b)
 {
 	if (a == NULL || b == NULL)
 		return ;
-	if (a->rotate_cnt > 0 && b->rotate_cnt > 0)
+	while (a->rotate_cnt > 0 && b->rotate_cnt > 0)
 	{
-		while (a->rotate_cnt * b->rotate_cnt != 0)
-		{
-			ft_putstr_fd("rr\n", STDOUT);
-			a->rotate_cnt--;
-			b->rotate_cnt--;
-		}
+		ft_putstr_fd("rr\n", STDOUT);
+		a->rotate_cnt--;
+		b->rotate_cnt--;
 	}
-	else if (a->rotate_cnt < 0 && b->rotate_cnt < 0)
+	while (a->rotate_cnt < 0 && b->rotate_cnt < 0)
 	{
-		while (a->rotate_cnt * b->rotate_cnt != 0)
-		{
-			ft_putstr_fd("rrr\n", STDOUT);
-			a->rotate_cnt++;
-			b->rotate_cnt++;
-		}
+		ft_putstr_fd("rrr\n", STDOUT);
+		a->rotate_cnt++;
+		b->rotate_cnt++;
 	}
 }
 
