@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 23:28:02 by kanlee            #+#    #+#             */
-/*   Updated: 2021/05/01 13:23:30 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/05/01 19:08:00 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,25 @@ void	stack_del_top(t_stack *stack)
 	}
 }
 
-void	stack_del_item(t_s
+void	stack_del_item(t_stack *stack, int n)
+{
+	t_item *tmp;
+
+	if (stack->head == NULL)
+		return ;
+	tmp = stack->head;
+	if (tmp->next == tmp)
+	{
+		free(tmp);
+		stack->head = NULL;
+		return ;
+	}
+	while (tmp->num != n)
+		tmp = tmp->next;
+	tmp->prev->next = tmp->next;
+	tmp->next->prev = tmp->prev;
+	if (tmp == stack->head)
+		stack->head = tmp->next;
+	free(tmp);
+	tmp = NULL;
+}

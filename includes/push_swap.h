@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 22:57:21 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/30 19:33:35 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/05/01 17:31:50 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	push_chunk_to_a(t_stack *a, t_stack *b);
 void	stack_add_top(t_stack *stack, int n);
 void	stack_del_top(t_stack *stack);
 void	stack_add_end(t_stack *stack, int n);
+void	stack_del_item(t_stack *stack, int n);
 
 typedef enum	e_ops {
 	ERR = -1,
@@ -87,7 +88,9 @@ void	do_op(t_stack *a, t_stack *b, int opnum, int print);
 void	solve_small(t_stack *a, t_stack *b);
 void	solve_big(t_stack *a, t_stack *b);
 void	find_minmax(t_stack *a);
+int		get_dist(t_stack *a, int from, int to);
 void	sort_a(int *arr, t_stack *a);
+void	push_minmax_to_a(t_stack *a, t_stack *b);
 void	prn_rotation(t_stack *a, t_stack *b);
 
 #endif

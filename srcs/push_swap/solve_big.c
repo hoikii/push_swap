@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 07:16:57 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/29 00:54:21 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/05/01 19:08:40 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,23 @@ void	prepare(t_stack *a, t_stack *chunk_boundary)
 {
 	int	*arr;
 	int	i;
+	int	chunk_cnt;
+	int	mididx;
 
 	arr = malloc(sizeof(int) * a->size);
 	sort_a(arr, a);
-	int chunk_cnt = 1;
-#if 0
-	chunk_cnt = (int)sqrt(a->size / 8);
-#else
+	chunk_cnt = 1;
 	if (a->size > 49)
 		chunk_cnt = 2;
 	if (a->size > 99)
 		chunk_cnt = 3;
 	if (a->size > 499)
 		chunk_cnt = 6;
-#endif
 	i = -1;
 	while (++i < chunk_cnt)
 	{
 		stack_add_top(chunk_boundary, arr[a->size / chunk_cnt * i]);
-		int mididx = a->size / (double)chunk_cnt * (i + i + 1) / 2;
+		mididx = a->size / (double)chunk_cnt * (i + i + 1) / 2;
 		chunk_boundary->head->mid = arr[mididx];
 	}
 	free(arr);

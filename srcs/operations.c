@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 17:48:24 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/29 00:37:32 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/05/01 19:07:02 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,29 +55,6 @@ void	op_ss(t_stack *a, t_stack *b, int print)
 
 void	do_op(t_stack *a, t_stack *b, int opnum, int print)
 {
-#if 0
-	static int prev = -1;
-	if (opnum == DO_PA)
-	{
-		if (prev == DO_RRB)
-			b->g_rbparrbpa++;
-		else if (prev == DO_RB)
-			prev = opnum;
-		else
-			prev = -1;
-	}
-	else if (opnum==DO_RRB)
-	{
-		if (prev == DO_PA)
-			prev = opnum;
-		else
-			prev = -1;
-	}
-	else if (opnum == DO_RB)
-		prev = DO_RB;
-	else
-		prev =-1;
-#endif
 	if (opnum == DO_SA)
 		return (op_sa(a, print));
 	if (opnum == DO_SB)

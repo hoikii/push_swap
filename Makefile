@@ -9,8 +9,10 @@ PUSHSWAP_SRCS	= srcs/push_swap/main.c \
 				  srcs/push_swap/solve_small.c \
 				  srcs/push_swap/solve_big.c \
 				  srcs/push_swap/find_minmax.c \
+				  srcs/push_swap/get_dist.c \
 				  srcs/push_swap/push_chunk_to_b.c \
-				  srcs/push_swap/push_chunk_to_a.c
+				  srcs/push_swap/push_chunk_to_a.c \
+				  srcs/push_swap/push_to_a_recursive.c
 PUSHSWAP_OBJS	= $(PUSHSWAP_SRCS:.c=.o)
 
 SHARED_SRCS		= srcs/stack.c \

@@ -1,44 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cleanup.c                                          :+:      :+:    :+:   */
+/*   get_dist.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/21 17:49:37 by kanlee            #+#    #+#             */
-/*   Updated: 2021/05/01 19:07:42 by kanlee           ###   ########.fr       */
+/*   Created: 2021/05/01 17:23:34 by kanlee            #+#    #+#             */
+/*   Updated: 2021/05/01 18:53:51 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "push_swap.h"
-#include "libft.h"
 
-void	free_stack(t_stack *a)
+int	get_dist(t_stack *a, int from, int to)
 {
-	t_item	*head;
-	t_item	*it;
 	t_item	*tmp;
+	int		i;
 
-	if (a == NULL)
-		return ;
-	head = a->head;
-	it = a->head;
-	tmp = it;
-	while (it != NULL)
+	tmp = a->head;
+	while (tmp->num != from)
+		tmp = tmp->next;
+	i = 0;
+	while (tmp->num != to)
 	{
-		tmp = it;
-		it = it->next;
-		free(tmp);
-		if (it == head)
-			break ;
+		i++;
+		tmp = tmp->next;
 	}
-}
-
-int		error(t_stack *a, t_stack *b)
-{
-	free_stack(a);
-	free_stack(b);
-	ft_putstr_fd("Error\n", STDERR);
-	return (-1);
+	if (i < a->size - i)
+		return (i);
+	return (i - a->size);
 }
