@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 07:16:57 by kanlee            #+#    #+#             */
-/*   Updated: 2021/05/01 19:08:40 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/05/01 20:16:25 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,17 @@
 #include "get_next_line.h"
 #include <math.h>
 
-void	prepare(t_stack *a, t_stack *chunk_boundary)
+static int	approx_sqrt(double n)
+{
+	int i;
+
+	i = 2;
+	while (i * i < n)
+		i++;
+	return (i);
+}
+
+void		prepare(t_stack *a, t_stack *chunk_boundary)
 {
 	int	*arr;
 	int	i;
@@ -27,12 +37,8 @@ void	prepare(t_stack *a, t_stack *chunk_boundary)
 	arr = malloc(sizeof(int) * a->size);
 	sort_a(arr, a);
 	chunk_cnt = 1;
-	if (a->size > 49)
-		chunk_cnt = 2;
-	if (a->size > 99)
-		chunk_cnt = 3;
-	if (a->size > 499)
-		chunk_cnt = 6;
+	if (a->size > 30)
+		chunk_cnt = approx_sqrt(a->size / 16.0);
 	i = -1;
 	while (++i < chunk_cnt)
 	{
@@ -43,7 +49,7 @@ void	prepare(t_stack *a, t_stack *chunk_boundary)
 	free(arr);
 }
 
-void	finalize(t_stack *a)
+void		finalize(t_stack *a)
 {
 	if (a->head == NULL)
 		return ;
@@ -53,7 +59,7 @@ void	finalize(t_stack *a)
 	prn_rotation(a, NULL);
 }
 
-void	solve_big(t_stack *a, t_stack *b)
+void		solve_big(t_stack *a, t_stack *b)
 {
 	t_stack	chunk_boundary;
 

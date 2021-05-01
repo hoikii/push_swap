@@ -37,7 +37,7 @@ CCBLUE		= \033[34m
 CCBLUE_BOLD	= \033[1;34m
 CCEND		= \033[0m
 
-.PHONY: test all bonus cleanlib clean fclean re
+.PHONY: test all cleanlib clean fclean re
 
 all: $(CHECKER_NAME) $(PUSHSWAP_NAME)
 
@@ -54,11 +54,8 @@ $(PUSHSWAP_NAME): $(PUSHSWAP_OBJS) $(SHARED_OBJS)
 %.o: %.c
 	$(CC) -I $(HEADERS) $(CFLAGS) -c $< -o $@
 
-bonus: CFLAGS += -DBONUS -D THREADS_CNT=$(shell getconf _NPROCESSORS_ONLN)
-bonus: clean all
-
 test: CFLAGS += -g3 -fsanitize=address
-test: all
+test: clean all
 
 cleanlib:
 	@echo "$(CCBLUE) >>> clean libft <<< $(CCEND)"
