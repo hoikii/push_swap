@@ -29,13 +29,8 @@ HEADERS		= includes
 LIBFTDIR	= libft
 LIBFTNAME	= ft
 CC			= gcc
-###############################
-###############################
-# CFLAGS		= -Wall -Wextra -Werror
-CFLAGS		= -Wall -Wextra
-# #############################
-# ##############################
-LDFLAGS		= -L$(LIBFTDIR) -l$(LIBFTNAME) -lm
+CFLAGS		= -Wall -Wextra -Werror
+LDFLAGS		= -L$(LIBFTDIR) -l$(LIBFTNAME)
 RM			= rm -rf
 
 CCBLUE		= \033[34m
