@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 22:57:21 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/29 01:05:34 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/04/30 19:33:35 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct		s_stack {
 	int				min;
 	int				max;
 	int				rotate_cnt;
+	struct s_stack	*item_ordered;
 }					t_stack;
 
 void	free_stack(t_stack *a);

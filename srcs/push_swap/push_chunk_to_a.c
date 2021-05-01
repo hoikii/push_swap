@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 18:35:40 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/30 16:27:12 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/05/01 13:25:13 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ static void	prepare(t_stack *b, t_stack *b_sorted)
 	i = -1;
 	while (++i < b->size)
 		stack_add_end(b_sorted, arr[i]);
+	b->item_ordered = b_sorted;
 	free(arr);
 	return ;
 }
-
 
 int	get_dist(t_stack *a, int from, int to)
 {
@@ -80,7 +80,7 @@ static void del_item(t_stack *b_sorted, int num)
 	stack_del_top(b_sorted);
 }
 
-int		push_min_to_a(t_stack *a, t_stack *b, int min, t_stack *b_sorted)
+int		push_min_to_a(t_stack *a, t_stack *b, int min)
 {
 	int next_min;
 	int min_dist;
@@ -89,7 +89,7 @@ int		push_min_to_a(t_stack *a, t_stack *b, int min, t_stack *b_sorted)
 	int	ret;
 
 	ret = 1;
-	idx = b_sorted->head;
+	idx = b->item_ordered->head;
 	while (idx->num != min)
 		idx = idx->next;
 	min_dist = get_dist(b, b->head->num, min);
@@ -97,20 +97,21 @@ int		push_min_to_a(t_stack *a, t_stack *b, int min, t_stack *b_sorted)
 	nextmin_dist = get_dist(b, b->head->num, next_min);
 	if (ft_abs(nextmin_dist) + ft_abs(get_dist(b, next_min, min)) < ft_abs(min_dist) + ft_abs(get_dist(b, min, next_min)) )
 //	if (ft_abs(nextmin_dist)  < ft_abs(min_dist) )
-		ret = push_min_to_a(a, b, next_min, b_sorted) + 1;
+		ret = push_min_to_a(a, b, next_min) + 1;
+	rotate_n_to_top(b, min);/*
 	while (b->head->num != min)
 	{
 		if (min_dist > 0)
 			do_op(a, b, DO_RB, 1);
 		else
 			do_op(a, b, DO_RRB, 1);
-	}
-	del_item(b_sorted, b->head->num);
+	}*/
+	del_item(b->item_ordered, b->head->num);
 	do_op(a, b, DO_PA, 1);
 	return (ret);
 }
 
-int		push_max_to_a(t_stack *a, t_stack *b, int max, int depth, t_stack *b_sorted)
+int		push_max_to_a(t_stack *a, t_stack *b, int max, int depth)
 {
 	int		ret;
 	int prevmax;
@@ -119,7 +120,7 @@ int		push_max_to_a(t_stack *a, t_stack *b, int max, int depth, t_stack *b_sorted
 	t_item	*idx;
 
 	ret = 1;
-	idx = b_sorted->head;
+	idx = b->item_ordered->head;
 	while (idx->num != max)
 		idx = idx->next;
 	max_dist = get_dist(b, b->head->num, max);
@@ -128,15 +129,17 @@ int		push_max_to_a(t_stack *a, t_stack *b, int max, int depth, t_stack *b_sorted
 
 	if (ft_abs(prevmax_dist) + ((depth==1)?1:2) + ft_abs(get_dist(b, prevmax, max)) < ft_abs(max_dist) + ft_abs(get_dist(b, max, prevmax)) )
 //	if (ft_abs(prevmax_dist) + ((depth==1)?1:2)  < ft_abs(max_dist) )
-		ret = push_max_to_a(a, b, prevmax, depth + 1, b_sorted) + 1;
+		ret = push_max_to_a(a, b, prevmax, depth + 1) + 1;
+	rotate_n_to_top(b, max);
+	/*
 	while (b->head->num != max)
 	{
 		if (max_dist > 0)
 			do_op(a, b, DO_RB, 1);
 		else
 			do_op(a, b, DO_RRB, 1);
-	}
-	del_item(b_sorted, b->head->num);
+	}*/
+	del_item(b->item_ordered, b->head->num);
 	do_op(a, b, DO_PA, 1);
 	if (depth >= 3)
 		do_op(a, b, DO_RA, 1);
@@ -151,7 +154,7 @@ void	push_chunk_to_a(t_stack *a, t_stack *b)
 	int		depth_cnt;
 
 	ft_memset(&b_sorted, 0, sizeof(t_stack));
-		prepare(b, &b_sorted);
+	prepare(b, &b_sorted);
 	while (b->head != NULL)
 	{
 		find_minmax(b);
@@ -160,15 +163,16 @@ void	push_chunk_to_a(t_stack *a, t_stack *b)
 		int flag = (b->size > 5) ? 2 : 1;
 		flag = 1;
 		flag = (b->size > 5) ? 0 : 2;
+		flag = (b->size > 3) ? -1 : 2;
 		if (ft_abs(min_dist) + flag < ft_abs(max_dist))
 		{
-			depth_cnt = push_min_to_a(a, b, b->min, &b_sorted);
+			depth_cnt = push_min_to_a(a, b, b->min);
 			while (depth_cnt--)
 				do_op(a, b, DO_RA, 1);
 		}
 		else
 		{
-			depth_cnt = push_max_to_a(a, b, b->max, 1, &b_sorted);
+			depth_cnt = push_max_to_a(a, b, b->max, 1);
 			if (depth_cnt >= 2)
 				do_op(a, b, DO_SA, 1);
 			while (depth_cnt-- >= 3)
