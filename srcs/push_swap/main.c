@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 01:09:11 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/30 15:18:18 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/05/06 19:53:36 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int			main(int ac, char **av)
 	ft_memset(&a, 0, sizeof(t_stack));
 	ft_memset(&b, 0, sizeof(t_stack));
 	if (ac < 2)
-		return (error(&a, &b));
+		return (0);
 	if (fill_stack_a(&a, av) == FAIL)
 		return (error(&a, &b));
 	if (!is_sorted(a, b))

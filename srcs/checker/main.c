@@ -6,7 +6,7 @@
 /*   By: kanlee <kanlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 23:43:20 by kanlee            #+#    #+#             */
-/*   Updated: 2021/04/29 00:56:07 by kanlee           ###   ########.fr       */
+/*   Updated: 2021/05/06 19:53:52 by kanlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int			main(int ac, char **av)
 	ft_memset(&a, 0, sizeof(t_stack));
 	ft_memset(&b, 0, sizeof(t_stack));
 	if (ac < 2)
-		return (error(&a, &b));
+		return (0);
 	if (fill_stack_a(&a, av) == FAIL)
 		return (error(&a, &b));
 	if (read_line(&a, &b) == FAIL)
